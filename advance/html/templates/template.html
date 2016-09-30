@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+    <meta http-equiv="refresh" content="5">
+    <style>
+        #pie1 {
+            display: inline-block;
+            top:-20px;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            background: yellowgreen;
+            border-radius: 50%;
+            background-image: linear-gradient(to right, transparent 50%, #655 0);
+            color: #655;
+        }
+
+        #pie1::before {
+            content: "";
+            display: block;
+            margin-left: 50%;
+            height: 100%;
+            border-radius: 0 100% 100% 0 / 50%;
+            background-color: inherit;
+            transform-origin: left;
+            animation: spin 2.5s linear infinite, bg 5s step-end infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(.5turn);
+            }
+        }
+
+        @keyframes bg {
+            50% {
+                background: #655;
+            }
+        }
+
+        #pie1 p {
+            position: relative;
+            color: white;
+            font-size: 55px;
+            font-weight: bold;
+            margin-top: -80%;
+            margin-left: 22%;
+            margin-right:0;
+            margin-bottom:0;
+        }
+
+        #box_info {
+            display: inline-block;
+            width: 470px;
+            height: 100px;
+            background: yellowgreen;
+            position: relative;
+            left: 10px;
+            border-radius: 20px;
+            box-shadow: 0 0 0 10px #655;
+            outline: 10px solid #655;
+        }
+        .stu_info_init {
+            display: inline-block;
+            position: relative;
+            margin: 6px 0px 0px 0px;
+            color: green;
+        }
+        .stu_info_error {
+            display: inline-block;
+            position: relative;
+            margin: 6px 0px 0px 0px;
+            color: red;
+        }
+        .stu_info_warning {
+            display: inline-block;
+            position: relative;
+            margin: 6px 0px 0px 0px;
+            color: orange;
+        }
+        .stu_info_none {
+            display: inline-block;
+            position: relative;
+            margin: 6px 0px 0px 0px;
+            color: yellowgreen;
+        }
+        .stu_info_pass {
+            display: inline-block;
+            position: relative;
+            margin: 6px 0px 0px 0px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div id="pie1">
+    <p>{{number}}</p>
+</div>
+<div id="box_info">
+    {% for i in info %}
+        {% if loop.index<10 %}
+            <p class="stu_info_{{i}}">stu00{{loop.index}}</p>
+        {% else %}
+            <p class="stu_info_{{i}}">stu0{{loop.index}}</p>
+        {% endif %}
+    {% endfor%}
+</div>
+</body>
+</html>
