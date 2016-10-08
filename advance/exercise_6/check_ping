@@ -3,9 +3,9 @@
 import re, os, sys
 
 answer = raw_input("""
-Please enter the IP address of www.google.com
+Please enter the IP address of www.baidu.com
 (an IP address is something that looks like this:
-    91.198.174.232
+    123.125.114.144
 )
 """)
 

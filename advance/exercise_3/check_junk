@@ -11,7 +11,7 @@ else:
     print """
 The junk file has been deleted!
 
-The nineth character of the solution is '%s'
+The eighth character of the solution is '%s'
 """%(chr(84))
 
 n = len(os.listdir('data'))
@@ -21,6 +21,6 @@ if n > 0:
 else:
     print """The data directory is empty.
 
-The tenth character of the solution is '%s'
+The nineth character of the solution is '%s'
 """%(chr(69))
 

@@ -16,7 +16,7 @@ if answer == root or answer == root+'%':
     print """
 Correct. 
 
-The 18th character is '%s'.
+The 14th character is '%s'.
 """%(chr(78))
 
 else:

@@ -6,10 +6,9 @@ print """
 The permission for execution was set correctly
 (otherwise you wouldnt see this). 
 
-The 16th character is '%s'.
-The 17th character is '%s'.
+The 13th character is '%s'.
 
-"""%(chr(71),chr(79))
+"""%(chr(71))
 
 
 
