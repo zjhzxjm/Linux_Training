@@ -5,12 +5,12 @@ Ver:
 
 """
 
-import os, re, sys
+import os
 import argparse
 import logging
 from jinja2 import Environment, PackageLoader
 
-parser = argparse.ArgumentParser(description="")
+parser = argparse.ArgumentParser(description="Program for Linux advance train")
 parser.add_argument('-n', '-number', type=int, dest='number', help='Total number of students, not exceed 40', required=True)
 parser.add_argument('-v', '--verbose', action='store_true', dest='verbose', help='Enable debug info')
 parser.add_argument('--version', action='version', version='1.0')
@@ -19,7 +19,7 @@ parser.add_argument('--version', action='version', version='1.0')
 class Setting:
     home_dir = '/RealBio_Train/home'
     answer_str = 'APTENODTEMATGNCU'
-    html_dir = '/var/wwww/html'
+    html_dir = '/var/www/html'
 
 
 class Student:
@@ -60,7 +60,12 @@ class Answer:
                 logging.debug("stu_answer:\t" + str(stu_answer))
 
                 if len(stu_answer) > 1:
-                    c_answer['err'].append(stu_name)
+                    for j in range(0, len(Setting.answer_str)):
+                        try:
+                            c_answer[j].append('error')
+                        except KeyError:
+                            c_answer[j] = []
+                            c_answer[j].append('error')
                 elif len(stu_answer) == 1:
                     for j in range(0, len(Setting.answer_str)):
                         try:
@@ -106,14 +111,14 @@ if __name__ == '__main__':
     env = Environment(loader=PackageLoader('html', 'templates'))
     template = env.get_template('template.html')
     advance_student = Student(args.number)
-    out = 'index0.html'
+    out = Setting.html_dir + '/index0.html'
     O_html = open(out, 'w')
 
     if len(list(set(advance_student.check_enroll()))) == 2 and 'warning' not in list(set(advance_student.check_enroll())):
         O_html.write(template.render(number='OK', info=advance_student.check_enroll()))
         advance_answer = Answer(args.number)
         for k, v in advance_answer.check_answer().items():
-            out = 'index' + str(k+1) + '.html'
+            out = Setting.html_dir + '/index' + str(k+1) + '.html'
             O_html = open(out, 'w')
             v.count('pass')
             O_html.write(template.render(number=v.count('pass'), info=v))
