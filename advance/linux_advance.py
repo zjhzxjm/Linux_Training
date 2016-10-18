@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Author: xujm@realbio.cn
-Ver:
+Ver:1.0
 
 """
 
@@ -66,6 +66,13 @@ class Answer:
                         except KeyError:
                             c_answer[j] = []
                             c_answer[j].append('error')
+                elif len(stu_answer) == 0:
+                    for j in range(0, len(Setting.answer_str)):
+                        try:
+                            c_answer[j].append('none')
+                        except KeyError:
+                            c_answer[j] = []
+                            c_answer[j].append('none')
                 elif len(stu_answer) == 1:
                     for j in range(0, len(Setting.answer_str)):
                         try:
@@ -122,10 +129,5 @@ if __name__ == '__main__':
             O_html = open(out, 'w')
             v.count('pass')
             O_html.write(template.render(number=v.count('pass'), info=v))
-        # print(advance_answer.check_answer())
     else:
         O_html.write(template.render(number='ER', info=advance_student.check_enroll()))
-        # print(template.render(number='ER', info=advance_student.check_enroll()))
-
-
-    # print(advance_student.check_enroll())

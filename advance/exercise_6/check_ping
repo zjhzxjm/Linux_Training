@@ -13,7 +13,7 @@ if re.search("\d+\.\d+\.\d+\.\d+",answer):
     print """
 Correct. 
 
-The 20th character is '%s'.
+The 15th character is '%s'.
 """%(chr(67))
 
 else:
